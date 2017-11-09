@@ -1,8 +1,11 @@
-package main
+package fav
 
 import (
 	"time"
 )
+
+//Map data
+var Alphabet map[string]float64
 
 type FavRequest struct {
 	MobileNo   string `json:"MobileNo" bson:"MobileNo"`

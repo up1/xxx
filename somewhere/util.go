@@ -1,4 +1,4 @@
-package main
+package somewhere
 
 import (
 	"bytes"

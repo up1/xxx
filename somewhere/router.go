@@ -1,6 +1,9 @@
-package main
+package somewhere
 
 import (
+	fav "lifestyle/fav"
+
+
 	"net/http"
 	"net/http/httptest"
 	"net/http/httputil"
@@ -29,14 +32,14 @@ var routes = Routes{
 		"Favorites Shop",
 		"POST",
 		"/favorite_shop/add",
-		AddFavoriteShop,
+		fav.AddFavoriteShop,
 		1,
 	},
 	{
 		"Favorites Shop",
 		"POST",
 		"/favorite_shop/remove",
-		RemoveFavoriteShop,
+		fav.RemoveFavoriteShop,
 		1,
 	},
 }
@@ -76,7 +79,7 @@ func NewRouter() *mux.Router {
 	return router
 }
 
-func requestMiddleware() negroni.HandlerFunc {
+func RequestMiddleware() negroni.HandlerFunc {
 	return negroni.HandlerFunc(func(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 		start := time.Now()
 		dump, err := httputil.DumpRequest(r, true)

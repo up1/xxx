@@ -1,4 +1,4 @@
-package main
+package somewhere
 
 import (
 	"fmt"
@@ -38,8 +38,6 @@ func ParseStage(s string) Stage {
 	}
 	return StageLocal
 }
-
-var conf Configs
 
 type Configs struct {
 	Stage                  Stage

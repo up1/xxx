@@ -1,6 +1,10 @@
 package main
 
 import (
+
+	. "lifestyle/somewhere"
+	. "lifestyle/fav"
+
 	"flag"
 	"os"
 	"path"
@@ -11,8 +15,6 @@ import (
 	"github.com/rs/cors"
 	"github.com/urfave/negroni"
 )
-
-var Alphabet map[string]float64
 
 func main() {
 	// log
@@ -25,7 +27,7 @@ func main() {
 	flag.String("stage", "localhost", "set working environment")
 	port := flag.String("p", "8040", "Port number")
 	flag.Parse()
-	conf.Stage = ParseStage(os.Getenv("STAGE"))
+	conf := &Configs{Stage: ParseStage(os.Getenv("STAGE"))}
 	conf.InitViper()
 
 	// error messages
@@ -38,15 +40,15 @@ func main() {
 	Alphabet = InitData()
 
 	// redis
-	rdPool = createRedisPool()
-	rdStore = CreateRedisStore(rdPool)
+	// rdPool := CreateRedisPool(conf)
+	// rdStore := CreateRedisStore(rdPool, conf)
 
 	// mongo
-	createMongoPool()
+	CreateMongoPool(conf)
 
 	n := negroni.New()
 	n.Use(negroni.NewRecovery())
-	n.Use(requestMiddleware())
+	n.Use(RequestMiddleware())
 
 	// cors.Default() setup the middleware with default options being
 	// all origins accepted with simple methods (GET, POST). See

@@ -1,4 +1,4 @@
-package main
+package somewhere
 
 type ErrorCodeModel struct {
 	MessageCode        string `json:"MessageCode"`
