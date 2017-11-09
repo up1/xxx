@@ -28,8 +28,15 @@ var routes = Routes{
 	{
 		"Favorites Shop",
 		"POST",
-		"/favorite_shop",
-		FavoriteShop,
+		"/favorite_shop/add",
+		AddFavoriteShop,
+		1,
+	},
+	{
+		"Favorites Shop",
+		"POST",
+		"/favorite_shop/remove",
+		RemoveFavoriteShop,
 		1,
 	},
 }
